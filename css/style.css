@@ -1,0 +1,40 @@
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+:root {
+  --primary-color: #803d3b;
+  --secondary-color: #af8260;
+  --accent-color: #e4c59e;
+  --background-color: #322c2b;
+}
+.item {
+  text-transform: capitalize;
+  color: #e4c59e;
+  margin-bottom: 5px;
+  text-align: center;
+  border-bottom: 2px solid #322c2b;
+  width: 80%;
+  padding-bottom: 3px;
+  cursor: crosshair;
+  height: 25px;
+}
+.item:hover {
+  font-size: 1.2rem;
+}
+
+/*   fonts   */
+.libre-barcode-128-text-regular {
+  font-family: "Libre Barcode 128 Text", system-ui;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 2.5rem;
+}
+@font-face {
+  font-family: "Libre Barcode 128 Text";
+  src: url("./../fonts/Libre_Barcode_128_Text/LibreBarcode128Text-Regular.ttf");
+}
+@font-face {
+  font-family: "Metal Mania";
+  src: url("./../fonts/Metal_Mania/MetalMania-Regular.ttf");
+}

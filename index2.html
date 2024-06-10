@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- reactjs -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>The World!</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const container = document.querySelector("#root");
+      const root = ReactDOM.createRoot(container);
+
+      function Homepage() {
+        const evils = [
+          { name: "lucifer", value: 15 },
+          { name: "beelzebub", value: 10 },
+          { name: "asmodeus", value: 5 },
+          { name: "belial", value: 3 },
+        ];
+        const [points, setPoints] = React.useState(0);
+
+        function handlePoints() {
+          return setPoints(points + 1);
+        }
+        return (
+          <div
+            id="container"
+            style={{
+              backgroundColor: "gray",
+              background: "center / contain url(horror.jpg)",
+              height: "100vh",
+              display: "flex",
+              alignItems: "center",
+              margin: "0px",
+              padding: "0px",
+            }}
+          >
+            <BackMusic />
+            <div
+              className="box"
+              style={{
+                textAlign: "left",
+                width: "400px",
+                height: "90%",
+                margin: "auto",
+                border: "4px double #322C2B",
+                padding: "50px 20px",
+              }}
+            >
+              <Header world="hell" />
+
+              <ul style={{ listStyle: "none", width: "50%", height: "50%" }}>
+                {evils
+                  .slice()
+                  .reverse()
+                  .map((evil, index) => {
+                    return (
+                      <li key={index} className="item">
+                        {evil.name}
+                      </li>
+                    );
+                  })}
+              </ul>
+
+              <Button points={points} handlePoints={handlePoints} />
+            </div>
+
+            <Rules evils={evils} />
+          </div>
+        );
+      }
+
+      function Header(props) {
+        return (
+          <h1
+            style={{
+              color: "#803D3B",
+              fontFamily: "Libre Barcode 128 Text",
+              textAlign: "center",
+              paddingBottom: "40px",
+            }}
+            className="libre-barcode-128-text-regular"
+          >
+            Welcome to the{" "}
+            <span
+              style={{
+                textTransform: "capitalize",
+                color: "#E4C59E",
+                textShadow: "none",
+              }}
+            >
+              {props.world ? props.world : "heaven"}
+            </span>{" "}
+            !
+          </h1>
+        );
+      }
+
+      const Button = ({ points, handlePoints }) => {
+        return (
+          <div
+            className="button"
+            onClick={handlePoints}
+            style={{
+              width: "80%",
+              margin: "auto",
+              textAlign: "center",
+              backgroundColor: "transparent",
+              color: "#C00000",
+              textTransform: "uppercase",
+              marginTop: "20px",
+              border: "2px dashed #C00000",
+              fontFamily: "Metal Mania",
+              cursor: "no-drop",
+              userSelect: "none",
+              padding: "3px 0",
+              borderRadius: "10% 30% 50% 70%",
+            }}
+          >
+            Your sins {points}
+          </div>
+        );
+      };
+
+      function BackMusic() {
+        return (
+          <figure
+            style={{
+              position: "absolute",
+              color: "#E4C59E",
+              fontFamily: "sans-serif",
+            }}
+          >
+            <figcaption>
+              <small>The World!</small>
+            </figcaption>
+            <audio
+              controls
+              loop
+              volume="70%"
+              src="./music/Retro_ Spooky Soundscape_ The Whispering Shadows Dungeon _Clement Panchout 2016.wav"
+            ></audio>
+          </figure>
+        );
+      }
+
+      function Rules({ evils }) {
+        return (
+          <div
+            className="rules-box"
+            style={{
+              width: "350px",
+              position: "absolute",
+              right: "0",
+              color: "var(--accent-color)",
+            }}
+          >
+            <h2>Rules for playing..</h2>
+            <p>
+              Thinking your sins did on today, click the button each you have
+              did a sins.
+            </p>
+            <small>*The many sins you have, the badest yours..</small>
+            <ul style={{ marginTop: "30px" }}>
+              Example:
+              <li>throw a things not in a trush</li>
+              <li>chat a bad things</li>
+              <li>angry because annoyed</li>
+              <li>said a bad things to the hate person</li>
+              <li>repay bad deeds</li>
+            </ul>
+            <ul style={{ marginTop: "30px" }}>
+              <p>POINTS</p>
+              {evils
+                .slice()
+                .reverse()
+                .map((evil, index) => {
+                  return (
+                    <li key={index}>
+                      <small>
+                        {evil.name}: {evil.value} point
+                      </small>
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
+        );
+      }
+
+      root.render(<Homepage />);
+    </script>
+  </body>
+</html>
